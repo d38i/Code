@@ -1,0 +1,12 @@
+[servers]
+host0 ansible_host=140.238.152.139	
+
+
+[web_servers]
+host1 ansible_host=132.145.102.94
+
+
+[vpn_servers]
+host2 ansible_host=140.238.147.208
+
+

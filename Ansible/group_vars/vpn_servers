@@ -1,0 +1,3 @@
+---
+ansible_ssh_user             : ubuntu
+ansible_ssh_private_key_file : /Users/admin/.ssh/l2tp.key

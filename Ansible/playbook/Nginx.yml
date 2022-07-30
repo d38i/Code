@@ -1,0 +1,23 @@
+---
+   - name   : Install default Nginx Web Server
+     hosts  : web_servers 
+     become : yes
+
+     vars:
+      - src  : /Users/admin/Desktop/CODE/Ansible/index.html
+        dest : /var/www/html
+
+     tasks:
+      - name    : install Nginx Web Server
+        apt     : name=nginx state=latest
+
+      - name    : Copy Index.html to server
+        copy    : src={{ src }} dest={{ dest }} mode=0555
+        notify  : Restart nginx
+
+      - name    : Start WebServer and make it enable on boot
+        service : name=nginx state=started enabled=yes
+
+     handlers   :
+      - name    : Restart Nginx
+        service : name=nginx state=Restart

@@ -1,0 +1,24 @@
+---
+ - name: Install default Apache Web Server
+   hosts: web_servers 
+   become: yes
+
+   vars:
+    source_file: /Users/admin/Desktop/CODE/Ansible/index.html
+    destin_file: /var/www/html
+
+   tasks:
+   - name: Install apache Web Server
+     apt: name=apache2 state=latest
+
+   - name: Copy Index.html to server
+     copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+     notyfy: Restart Apache
+
+   - name: Start WebServer and make it enable on boot
+     service: name=apache2 state=started enabled=yes
+
+
+   handlers:
+     - name: Restart Apache
+       service: name=apache2 state=Restart
